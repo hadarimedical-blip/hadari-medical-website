@@ -1,0 +1,73 @@
+media:
+  input: assets
+  output: /assets
+
+content:
+  - name: site
+    label: بيانات الموقع
+    type: file
+    path: data/site.json
+    format: json
+    fields:
+      - name: centerName
+        label: اسم المركز
+        type: string
+      - name: subtitle
+        label: الوصف تحت الاسم
+        type: string
+      - name: slogan
+        label: الشعار النصي
+        type: string
+      - name: heroTitle
+        label: عنوان الواجهة
+        type: string
+      - name: heroText
+        label: نص الواجهة
+        type: text
+      - name: branch
+        label: اسم الفرع
+        type: string
+      - name: address
+        label: العنوان
+        type: text
+      - name: phone1
+        label: رقم الموبايل الأول
+        type: string
+      - name: phone2
+        label: رقم الموبايل الثاني
+        type: string
+      - name: landline1
+        label: الرقم الأرضي الأول
+        type: string
+      - name: landline2
+        label: الرقم الأرضي الثاني
+        type: string
+      - name: landline3
+        label: الرقم الأرضي الثالث
+        type: string
+      - name: labPhone
+        label: رقم المخبر
+        type: string
+      - name: insuranceText
+        label: ميزة التأمين
+        type: string
+      - name: emergencyText
+        label: ميزة الإسعاف
+        type: string
+      - name: logo
+        label: مسار الشعار
+        type: string
+
+  - name: services
+    label: الخدمات والعيادات
+    type: file
+    path: data/services.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: اسم الخدمة
+        type: string
+      - name: description
+        label: وصف الخدمة
+        type: text
