@@ -32,6 +32,33 @@ h1{font-size:clamp(32px,5vw,54px);line-height:1.35;color:var(--blue);margin:18px
 section{padding:68px 0}.sectionHead{text-align:center;margin-bottom:32px}.sectionHead h2{color:var(--blue);font-size:30px;margin:0 0 8px}.sectionHead p{color:var(--muted);margin:0}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{border:1px solid #e8ecf4;border-radius:20px;padding:24px;background:#fff;box-shadow:0 10px 30px #17233f08}
+ .cardToggle{
+  margin-top:16px;
+  padding:9px 18px;
+  border:0;
+  border-radius:10px;
+  background:var(--blue);
+  color:#fff;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+.cardToggle:hover{
+  background:#3656a8;
+}
+.cardDetails{
+  margin-top:14px;
+  padding:14px;
+  border-radius:12px;
+  background:var(--pale);
+  color:var(--ink);
+  font-size:14px;
+  white-space:pre-line;
+}
+.cardDetails[hidden]{
+  display:none;
+}
 .cardMark{width:42px;height:42px;border-radius:13px;background:#fffbd0;color:var(--blue);display:grid;place-items:center;font-size:22px;font-weight:700}
 .card h3{color:var(--blue);margin:12px 0 4px;font-size:19px}.card p{margin:0;color:var(--muted);font-size:14px}
 .about{background:var(--pale)}.aboutGrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
@@ -75,11 +102,40 @@ async function loadSite(){
   put('insuranceText',s.insuranceText);put('emergencyText',s.emergencyText);put('footerName',s.centerName);put('footerSlogan',s.slogan);
   if(s.logo)document.getElementById('logo').src=s.logo;
   const list=document.getElementById('servicesList');list.innerHTML='';
-  services.forEach((item,i)=>{const article=document.createElement('article');article.className='card';
-   const mark=document.createElement('div');mark.className='cardMark';mark.textContent=String(i+1).padStart(2,'0');
-   const h=document.createElement('h3');h.textContent=item.title;
-   const p=document.createElement('p');p.textContent=item.description;
-   article.append(mark,h,p);list.append(article);
+ 
+services.forEach((item,i)=>{
+  const article=document.createElement('article');
+  article.className='card';
+
+  const mark=document.createElement('div');
+  mark.className='cardMark';
+  mark.textContent=String(i+1).padStart(2,'0');
+
+  const h=document.createElement('h3');
+  h.textContent=item.title;
+
+  const p=document.createElement('p');
+  p.textContent=item.description;
+
+  const details=document.createElement('div');
+  details.className='cardDetails';
+  details.hidden=true;
+  details.textContent=item.details || 'لا توجد تفاصيل إضافية حالياً.';
+
+  const toggle=document.createElement('button');
+  toggle.type='button';
+  toggle.className='cardToggle';
+  toggle.textContent='عرض التفاصيل';
+
+  toggle.addEventListener('click',()=>{
+    details.hidden=!details.hidden;
+    toggle.textContent=details.hidden?'عرض التفاصيل':'إخفاء التفاصيل';
+  });
+
+  article.append(mark,h,p,toggle,details);
+  list.append(article);
+});
+
   });
   const phoneData=[['الموبايل الأول',s.phone1],['الموبايل الثاني',s.phone2],['الرقم الأرضي الأول',s.landline1],['الرقم الأرضي الثاني',s.landline2],['الرقم الأرضي الثالث',s.landline3],['المخبر',s.labPhone]];
   const phoneWrap=document.getElementById('phones');phoneWrap.innerHTML='';
