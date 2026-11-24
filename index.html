@@ -136,7 +136,6 @@ services.forEach((item,i)=>{
   list.append(article);
 });
 
-  });
   const phoneData=[['الموبايل الأول',s.phone1],['الموبايل الثاني',s.phone2],['الرقم الأرضي الأول',s.landline1],['الرقم الأرضي الثاني',s.landline2],['الرقم الأرضي الثالث',s.landline3],['المخبر',s.labPhone]];
   const phoneWrap=document.getElementById('phones');phoneWrap.innerHTML='';
   phoneData.filter(x=>x[1]).forEach(([label,num])=>{const row=document.createElement('div');row.className='contactLine';
