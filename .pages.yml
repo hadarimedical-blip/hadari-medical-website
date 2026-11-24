@@ -71,3 +71,6 @@ content:
       - name: description
         label: وصف الخدمة
         type: text
+      - name: details
+        label: تفاصيل الخدمة
+        type: text
