@@ -74,3 +74,25 @@ content:
       - name: details
         label: تفاصيل الخدمة
         type: text
+        
+  - name: doctors
+    label: أطباؤنا
+    type: file
+    path: data/doctors.json
+    format: json
+    list: true
+    fields:
+      - name: name
+        label: اسم الطبيب
+        type: string
+      - name: specialty
+        label: الاختصاص
+        type: string
+      - name: clinic
+        label: العيادة
+        type: string
+      - name: image
+        label: صورة الطبيب
+        type: image
+        options:
+          path: doctors
