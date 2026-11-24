@@ -122,18 +122,27 @@ services.forEach((item,i)=>{
   details.hidden=true;
   details.textContent=item.details || 'لا توجد تفاصيل إضافية حالياً.';
 
-  const toggle=document.createElement('button');
-  toggle.type='button';
-  toggle.className='cardToggle';
-  toggle.textContent='عرض التفاصيل';
+ article.style.cursor='pointer';
+article.setAttribute('role','button');
+article.setAttribute('tabindex','0');
+article.setAttribute('aria-expanded','false');
 
-  toggle.addEventListener('click',()=>{
-    details.hidden=!details.hidden;
-    toggle.textContent=details.hidden?'عرض التفاصيل':'إخفاء التفاصيل';
-  });
+const toggleDetails=()=>{
+  details.hidden=!details.hidden;
+  article.setAttribute('aria-expanded',String(!details.hidden));
+};
 
-  article.append(mark,h,p,toggle,details);
-  list.append(article);
+article.addEventListener('click',toggleDetails);
+
+article.addEventListener('keydown',(event)=>{
+  if(event.key==='Enter'||event.key===' '){
+    event.preventDefault();
+    toggleDetails();
+  }
+});
+
+article.append(mark,h,p,details);
+list.append(article);
 });
 
   const phoneData=[['الموبايل الأول',s.phone1],['الموبايل الثاني',s.phone2],['الرقم الأرضي الأول',s.landline1],['الرقم الأرضي الثاني',s.landline2],['الرقم الأرضي الثالث',s.landline3],['المخبر',s.labPhone]];
